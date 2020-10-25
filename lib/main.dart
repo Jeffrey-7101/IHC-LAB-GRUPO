@@ -1,4 +1,6 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'SecondPageArguments.dart';
 
@@ -9,11 +11,17 @@ void main() {
 class MyApp extends StatelessWidget {
   Widget build(context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en'),
+        const Locale('es')
+      ],
       home: Scaffold(
         appBar: AppBar(
           title: Text('Estudio Numerologico'),
-          backgroundColor: Colors.black45,
-          shadowColor: Colors.blue,
+          backgroundColor: Colors.green,
         ),
         body: MyStatefulWidget(),
       ),
@@ -30,6 +38,7 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String nameValue;
   String lastNameValue;
+  var dates;
   final formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +48,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           child: Column(
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: "Nombres:"),
+                decoration: InputDecoration(
+                  labelText: "Nombres:",
+                  icon: new Icon(Icons.person),
+                ),
                 onSaved: (value) {
                   nameValue = value;
                 },
@@ -52,7 +64,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: "Apellidos"),
+                
+                decoration: InputDecoration(
+                  labelText: "Apellidos",
+                  icon: new Icon(Icons.view_sidebar_sharp),
+                ),
                 onSaved: (value) {
                   lastNameValue = value;
                 },
@@ -62,6 +78,26 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   } else {
                     return null;
                   }
+                },
+              ),
+              DateTimePicker(
+                locale : const Locale("es","ES"),
+                initialValue: '',
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+                icon: Icon(Icons.event),
+                dateLabelText: 'Fecha de Nacimiento',
+                onChanged: (val) => print(val),
+                validator: (val) {
+                  print(val);
+                  if (val.isEmpty) {
+                    return "Llene este campo";
+                  } else {
+                    return null;
+                  }
+                },
+                onSaved: (val) {
+                  dates = val;
                 },
               ),
               RaisedButton(
