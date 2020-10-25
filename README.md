@@ -1,4 +1,4 @@
-# pruebas_en_flutter
+# App en Flutter
 
 A new Flutter project.
 
