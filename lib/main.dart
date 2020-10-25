@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'SecondPageArguments.dart'
+import 'SecondPageArguments.dart';
 
 void main() {
   runApp(MyApp());
