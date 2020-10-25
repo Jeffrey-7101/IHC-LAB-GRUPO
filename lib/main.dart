@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'SecondPageArguments.dart'
+
 void main() {
   runApp(MyApp());
 }
@@ -9,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('My first App with Flutter'),
+          title: Text('Estudio Numerologico'),
           backgroundColor: Colors.black45,
           shadowColor: Colors.blue,
         ),
@@ -26,33 +28,58 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  final _formKey = GlobalKey<FormState>();
+  String nameValue;
+  String lastNameValue;
+  final formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
-    return Form(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextFormField(
-          decoration: const InputDecoration(
-            hintText: 'Ingrese su nombre',
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(labelText: "Nombres:"),
+                onSaved: (value) {
+                  nameValue = value;
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Llene este campo";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: "Apellidos"),
+                onSaved: (value) {
+                  lastNameValue = value;
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Llene este campo";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              RaisedButton(
+                  child: Text("Enviar"),
+                  onPressed: () {
+                    _showResults(context);
+                  }),
+            ],
           ),
-          validator: (value) {
-            if (value.isEmpty) {
-              return 'Por favor ingrese su nombre';
-            }
-            return null;
-          },
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState.validate()) {}
-            },
-            child: Text('Submit'),
-          ),
-        ),
-      ],
-    ));
+      ),
+    );
+  }
+
+  void _showResults(BuildContext context) {
+    if (formKey.currentState.validate()) formKey.currentState.save();
+    Navigator.of(context).pushNamed("/second",
+        arguments: InformationPage(
+            name: this.nameValue, lastName: this.lastNameValue));
   }
 }
