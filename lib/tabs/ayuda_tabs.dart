@@ -9,7 +9,7 @@ class AyudaTabs extends StatelessWidget {
         title: new Text("Nosotros..."),
       ),
       body: new Center(
-        child: new Text("Estamos aprendiendo Flutter")
+        child: new Text("Estudio Numerologico")
       ),
     );
   }

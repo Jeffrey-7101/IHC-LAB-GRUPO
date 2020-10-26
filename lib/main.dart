@@ -33,7 +33,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         primarySwatch: Colors.blue,
       ),
       home: DefaultTabController(
-        length: 4, 
+        length: 3, 
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -43,7 +43,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               tabs: <Widget>[
                 new Tab(icon: new Icon(Icons.home), text: "Inicio"),
                 new Tab(icon: new Icon(Icons.contacts), text: "Ingresar"),
-                new Tab(icon: new Icon(Icons.place), text: "Lugares"),
                 new Tab(icon: new Icon(Icons.help), text: "Ayuda")
               ],
             ),
@@ -52,7 +51,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             children: <Widget>[
               new InicioTabs(),
               new RegistroTabs(),
-              new LugaresTabs(),
               new AyudaTabs(),
             ],
           ),

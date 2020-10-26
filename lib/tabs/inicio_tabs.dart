@@ -18,7 +18,7 @@ class InicioTabs extends StatelessWidget {
               onPressed: (){ //click del boton cuando lo presionamos
                 Scaffold
                 .of(context)
-                .showSnackBar(SnackBar(content: Text('Hola mundo'),));
+                .showSnackBar(SnackBar(content: Text('Hola'),));
               },
               child: new Text("Presiona Aqui"),
             ),
