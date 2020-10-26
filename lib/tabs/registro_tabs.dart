@@ -80,7 +80,8 @@ class _RegistroTabsState extends State<RegistroTabs> {
                 },
               ),
               const Divider(
-                height: 200,
+                height: 150,
+                color: Colors.white,
               ),
               RaisedButton( 
                 onPressed: () {
@@ -99,7 +100,7 @@ class _RegistroTabsState extends State<RegistroTabs> {
                     ),
                   ),
                   padding: const EdgeInsets.all(15.0),
-                  child:const Text('Enviar', style: TextStyle(fontSize: 20)),
+                  child:const Text('  Enviar  ', style: TextStyle(fontSize: 20)),
                 )
               ),
           ],
