@@ -29,7 +29,7 @@ class _RegistroTabsState extends State<RegistroTabs> {
             TextFormField(
                 decoration: InputDecoration(
                   labelText: "Nombres:",
-                  icon: new Icon(Icons.person),
+                  icon: const Icon(Icons.person),
                 ),
                 onSaved: (value) {
                   nameValue = value;
@@ -46,7 +46,7 @@ class _RegistroTabsState extends State<RegistroTabs> {
                 
                 decoration: InputDecoration(
                   labelText: "Apellidos",
-                  icon: new Icon(Icons.view_sidebar_sharp),
+                  icon: const Icon(Icons.view_sidebar_sharp),
                 ),
                 onSaved: (value) {
                   lastNameValue = value;
@@ -79,11 +79,28 @@ class _RegistroTabsState extends State<RegistroTabs> {
                   dates = val;
                 },
               ),
-              RaisedButton(
-                  child: Text("Enviar"),
-                  onPressed: () {
-                    _showResults(context);
-                  },
+              const Divider(
+                height: 200,
+              ),
+              RaisedButton( 
+                onPressed: () {
+                  _showResults(context);
+                },
+                textColor: Colors.white,
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: <Color>[
+                        Color(0xFF0D47A1),
+                        Color(0xFF1976D2),
+                        Color(0xFF42A5F5),
+                      ],
+                    ),
+                  ),
+                  padding: const EdgeInsets.all(15.0),
+                  child:const Text('Enviar', style: TextStyle(fontSize: 20)),
+                )
               ),
           ],
         ), 
