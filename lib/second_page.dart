@@ -20,7 +20,8 @@ class InformationPage extends StatelessWidget {
                 arguments.name,
                 textAlign: TextAlign.center,
               ),
-              Text(arguments.lastName, textAlign: TextAlign.center)
+              Text(arguments.lastName, textAlign: TextAlign.center),
+              Text(arguments.sumaDate()),
             ],
           ),
         ));
@@ -28,7 +29,85 @@ class InformationPage extends StatelessWidget {
 }
 
 class SecondPageArguments {
-  String name;
-  String lastName;
-  SecondPageArguments({this.name, this.lastName});
+  String name, lastName, day, month, year;
+
+  Map<int, String> urgInt = {
+    3: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona creativa, con arte y belleza.",
+    4: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona firme, sólida.",
+    5: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona razonativa, con rigor, propensa al aprendizaje.",
+    6: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona cariñosa, indecisa.",
+    7: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona tendiente a luchar.",
+    8: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona paciente.",
+    9: "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la persona generosa, con ideas geniales, independiente.",
+  };
+  SecondPageArguments(
+      {this.name, this.lastName, this.day, this.month, this.year});
+  sumaLengts() {
+    var lengtName = name.length;
+    var lengtlastName = lastName.length;
+    var suma = lengtName + lengtlastName;
+    return suma.toString();
+  }
+
+  sumaDate() {
+    String day1 = day.substring(0, 1);
+    String day2 = day.substring(1);
+    String month1 = month.substring(0, 1);
+    String month2 = month.substring(1);
+    String year1 = year.substring(0, 1);
+    String year2 = year.substring(1, 2);
+    String year3 = year.substring(2, 3);
+    String year4 = year.substring(3);
+    var day1Int = int.parse(day1);
+    var day2Int = int.parse(day2);
+    var month1Int = int.parse(month1);
+    var month2Int = int.parse(month2);
+    var year1Int = int.parse(year1);
+    var year2Int = int.parse(year2);
+    var year3Int = int.parse(year3);
+    var year4Int = int.parse(year4);
+    var sumDay = day1Int + day2Int;
+
+    var sumGeneral;
+
+    var sumDayString = sumDay.toString();
+    var sumDayAux;
+    if (sumDayString.length == 2) {
+      var sumDayS1 = sumDayString.substring(0, 1);
+      var sumDayS2 = sumDayString.substring(1);
+      sumDayAux = int.parse(sumDayS1) + int.parse(sumDayS2);
+    } else {
+      sumDayAux = sumDay;
+    }
+    var sumMonth = month1Int + month2Int;
+    var sumMonthString = sumMonth.toString();
+    var sumMonthAux;
+    if (sumMonthString.length == 2) {
+      var sumMonthS1 = sumMonthString.substring(0, 1);
+      var sumMonthS2 = sumMonthString.substring(1);
+      sumMonthAux = int.parse(sumMonthS1) + int.parse(sumMonthS2);
+    } else {
+      sumMonthAux = sumMonth;
+    }
+    var sumYear = year1Int + year2Int + year3Int + year4Int;
+    var sumYearString = sumYear.toString();
+    var sumYearAux;
+    if (sumYearString.length == 2) {
+      var sumYearS1 = sumYearString.substring(0, 1);
+      var sumYearS2 = sumYearString.substring(1);
+      sumYearAux = int.parse(sumYearS1) + int.parse(sumYearS2);
+    } else {
+      sumYearAux = sumYear;
+    }
+
+    sumGeneral = sumDayAux + sumMonthAux + sumYearAux;
+    if (sumGeneral.toString().length == 2) {
+      return urgInt[(int.parse(sumGeneral.toString().substring(0, 1)) +
+          int.parse(sumGeneral.toString().substring(1)))];
+    } else {
+      return urgInt[sumGeneral];
+    }
+  }
+
+  urgenciasInt() {}
 }

@@ -9,7 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   Widget build(context) {
     return MaterialApp(
-      title: "Material App",
+      title: "Estudio Numerologico",
       initialRoute: "/",
       routes: {
         "/": (BuildContext context) {
