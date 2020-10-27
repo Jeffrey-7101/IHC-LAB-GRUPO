@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_time_picker/date_time_picker.dart';
 
-import 'SecondPageArguments.dart';
-
 class RegistroTabs extends StatefulWidget {
   @override
   _RegistroTabsState createState() => _RegistroTabsState();
@@ -19,71 +17,76 @@ class _RegistroTabsState extends State<RegistroTabs> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-     
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Nombres:",
-                  icon: const Icon(Icons.person),
-                ),
-                onSaved: (value) {
-                  nameValue = value;
-                },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Llene este campo";
-                  } else {
-                    return null;
-                  }
-                },
+              decoration: InputDecoration(
+                labelText: "Nombres",
+                icon: const Icon(Icons.person),
               ),
-              TextFormField(
-                
-                decoration: InputDecoration(
-                  labelText: "Apellidos",
-                  icon: const Icon(Icons.view_sidebar_sharp),
-                ),
-                onSaved: (value) {
-                  lastNameValue = value;
-                },
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return "Llene este campo";
-                  } else {
-                    return null;
-                  }
-                },
+              onSaved: (value) {
+                nameValue = value;
+              },
+              onChanged: (text) {
+                nameValue = text;
+              },
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Llene este campo";
+                } else {
+                  return null;
+                }
+              },
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Apellidos",
+                icon: const Icon(Icons.view_sidebar_sharp),
               ),
-              DateTimePicker(
-                locale : const Locale("es","ES"),
-                initialValue: '',
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2100),
-                icon: Icon(Icons.event),
-                dateLabelText: 'Fecha de Nacimiento',
-                onChanged: (val) => print(val),
-                validator: (val) {
-                  print(val);
-                  if (val.isEmpty) {
-                    return "Llene este campo";
-                  } else {
-                    return null;
-                  }
-                },
-                onSaved: (val) {
-                  dates = val;
-                },
-              ),
-              const Divider(
-                height: 150,
-                color: Colors.white,
-              ),
-              RaisedButton( 
+              onSaved: (value) {
+                lastNameValue = value;
+              },
+              onChanged: (text) {
+                lastNameValue = text;
+              },
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Llene este campo";
+                } else {
+                  return null;
+                }
+              },
+            ),
+            DateTimePicker(
+              locale: const Locale("es", "ES"),
+              initialValue: '',
+              firstDate: DateTime(2000),
+              lastDate: DateTime(2100),
+              icon: Icon(Icons.event),
+              dateLabelText: 'Fecha de Nacimiento',
+              onChanged: (date1) {
+                dates= date1;
+              },
+              validator: (val) {
+                print(val);
+                if (val.isEmpty) {
+                  return "Llene este campo";
+                } else {
+                  return null;
+                }
+              },
+              onSaved: (val) {
+                dates = val;
+              },
+            ),
+            const Divider(
+              height: 150,
+              color: Colors.white,
+            ),
+            RaisedButton(
                 onPressed: () {
                   _showResults(context);
                 },
@@ -100,20 +103,38 @@ class _RegistroTabsState extends State<RegistroTabs> {
                     ),
                   ),
                   padding: const EdgeInsets.all(15.0),
-                  child:const Text('  Enviar  ', style: TextStyle(fontSize: 20)),
-                )
-              ),
+                  child:
+                      const Text('  Enviar  ', style: TextStyle(fontSize: 20)),
+                )),
           ],
-        ), 
+        ),
       ),
     );
-    
   }
 
   void _showResults(BuildContext context) {
-    if (formKey.currentState.validate()) formKey.currentState.save();
-    Navigator.of(context).pushNamed("/second",
-        arguments: InformationPage(
-            name: this.nameValue, lastName: this.lastNameValue));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => Screentwo(
+            lastNameValue: lastNameValue, nameValue: nameValue, dates : dates)));
+  }
+}
+
+// ignore: must_be_immutable
+class Screentwo extends StatelessWidget {
+  String nameValue;
+  String lastNameValue;
+  var dates;
+  Screentwo({this.lastNameValue, this.nameValue,this.dates});
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Screen 2"),
+      ),
+      body: Center(
+        child: Text(
+          nameValue+" "+lastNameValue+" "+dates,
+        ),
+      ),
+    );
   }
 }
