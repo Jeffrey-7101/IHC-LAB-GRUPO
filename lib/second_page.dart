@@ -16,12 +16,15 @@ class InformationPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              Text("Tu nombre: "),
               Text(
                 arguments.name,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.justify,
               ),
               Text(arguments.lastName, textAlign: TextAlign.center),
-              Text(arguments.sumaDate()),
+              Text("Urgencia Interior: "),
+              Text(arguments.numUrgenciaInterior()),
+              Text(arguments.urgenciasInt())
             ],
           ),
         ));
@@ -49,7 +52,7 @@ class SecondPageArguments {
     return suma.toString();
   }
 
-  sumaDate() {
+  numUrgenciaInterior() {
     String day1 = day.substring(0, 1);
     String day2 = day.substring(1);
     String month1 = month.substring(0, 1);
@@ -102,12 +105,15 @@ class SecondPageArguments {
 
     sumGeneral = sumDayAux + sumMonthAux + sumYearAux;
     if (sumGeneral.toString().length == 2) {
-      return urgInt[(int.parse(sumGeneral.toString().substring(0, 1)) +
-          int.parse(sumGeneral.toString().substring(1)))];
+      sumGeneral = (int.parse(sumGeneral.toString().substring(0, 1)) +
+          int.parse(sumGeneral.toString().substring(1)));
+      return sumGeneral.toString();
     } else {
-      return urgInt[sumGeneral];
+      return sumGeneral.toString();
     }
   }
 
-  urgenciasInt() {}
+  urgenciasInt() {
+    return urgInt[int.parse(numUrgenciaInterior())];
+  }
 }
