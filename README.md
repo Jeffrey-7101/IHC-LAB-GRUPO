@@ -1,4 +1,4 @@
-# pruebas_en_flutter
+# proyecto-IHC
 
 A new Flutter project.
 
