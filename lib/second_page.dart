@@ -28,7 +28,13 @@ class InformationPage extends StatelessWidget {
               Text("Tonica Fundamental "),
               Text(arguments.tonicaFun()),
               Text("Tonica del Dia"),
-              Text(arguments.tonicaDia())
+              Text(arguments.tonicaDia()),
+              Text("Años Cabala"),
+              Text(arguments.numCabalaYear(1)),
+              Text(arguments.numCabalaYear(2)),
+              Text(arguments.numCabalaYear(3)),
+              Text(arguments.numCabalaYear(4)),
+              Text(arguments.numCabalaYear(5)),
             ],
           ),
         ));
@@ -62,27 +68,12 @@ class SecondPageArguments {
     }
   }
 
-  numUrgenciaInterior() {
-    String day1 = day.substring(0, 1);
-    String day2 = day.substring(1);
-    String month1 = month.substring(0, 1);
-    String month2 = month.substring(1);
-    String year1 = year.substring(0, 1);
-    String year2 = year.substring(1, 2);
-    String year3 = year.substring(2, 3);
-    String year4 = year.substring(3);
+  sumaDigDay(dayDig) {
+    String day1 = dayDig.substring(0, 1);
+    String day2 = dayDig.substring(1);
     var day1Int = int.parse(day1);
     var day2Int = int.parse(day2);
-    var month1Int = int.parse(month1);
-    var month2Int = int.parse(month2);
-    var year1Int = int.parse(year1);
-    var year2Int = int.parse(year2);
-    var year3Int = int.parse(year3);
-    var year4Int = int.parse(year4);
     var sumDay = day1Int + day2Int;
-
-    var sumGeneral;
-
     var sumDayString = sumDay.toString();
     var sumDayAux;
     if (sumDayString.length == 2) {
@@ -92,6 +83,15 @@ class SecondPageArguments {
     } else {
       sumDayAux = sumDay;
     }
+    return sumDayAux;
+  }
+
+  sumaDigMonth(monthDig) {
+    String month1 = monthDig.substring(0, 1);
+    String month2 = monthDig.substring(1);
+
+    var month1Int = int.parse(month1);
+    var month2Int = int.parse(month2);
     var sumMonth = month1Int + month2Int;
     var sumMonthString = sumMonth.toString();
     var sumMonthAux;
@@ -102,6 +102,18 @@ class SecondPageArguments {
     } else {
       sumMonthAux = sumMonth;
     }
+    return sumMonthAux;
+  }
+
+  sumaDigYear(yearDig) {
+    String year1 = yearDig.substring(0, 1);
+    String year2 = yearDig.substring(1, 2);
+    String year3 = yearDig.substring(2, 3);
+    String year4 = yearDig.substring(3);
+    var year1Int = int.parse(year1);
+    var year2Int = int.parse(year2);
+    var year3Int = int.parse(year3);
+    var year4Int = int.parse(year4);
     var sumYear = year1Int + year2Int + year3Int + year4Int;
     var sumYearString = sumYear.toString();
     var sumYearAux;
@@ -112,8 +124,12 @@ class SecondPageArguments {
     } else {
       sumYearAux = sumYear;
     }
+    return sumYearAux;
+  }
 
-    sumGeneral = sumDayAux + sumMonthAux + sumYearAux;
+  numUrgenciaInterior() {
+    var sumGeneral;
+    sumGeneral = sumaDigDay(day) + sumaDigMonth(month) + sumaDigYear(year);
     if (sumGeneral.toString().length == 2) {
       sumGeneral = (int.parse(sumGeneral.toString().substring(0, 1)) +
           int.parse(sumGeneral.toString().substring(1)));
@@ -155,5 +171,20 @@ class SecondPageArguments {
 
   tonicaDia() {
     return numTonicaDia().toString();
+  }
+
+  numCabalaYear(n) {
+    var yearAcumulado = 0;
+    var yearN = year;
+
+    for (var i = 0; i < n; i++) {
+      yearAcumulado = int.parse(yearN) + sumaDigYear(yearN);
+      yearN = yearAcumulado.toString();
+    }
+    return yearAcumulado.toString();
+  }
+
+  cabalaYear(n) {
+    return numCabalaYear(n).toString();
   }
 }

@@ -74,7 +74,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     labelText: "Dia",
                     icon: Container(
                       child: Icon(
-                        Icons.supervised_user_circle,
+                        Icons.calendar_today,
                         color: Colors.black,
                       ),
                     )),
@@ -94,7 +94,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     labelText: "Mes",
                     icon: Container(
                       child: Icon(
-                        Icons.supervised_user_circle,
+                        Icons.calendar_today,
                         color: Colors.black,
                       ),
                     )),
@@ -114,7 +114,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     labelText: "Año",
                     icon: Container(
                       child: Icon(
-                        Icons.supervised_user_circle,
+                        Icons.calendar_today,
                         color: Colors.black,
                       ),
                     )),
