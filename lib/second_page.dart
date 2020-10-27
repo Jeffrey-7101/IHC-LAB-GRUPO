@@ -9,7 +9,7 @@ class InformationPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("Information Page"),
+          title: Text("Tus resultados"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -21,10 +21,14 @@ class InformationPage extends StatelessWidget {
                 arguments.name,
                 textAlign: TextAlign.justify,
               ),
-              Text(arguments.lastName, textAlign: TextAlign.center),
+              Text(arguments.lastName, textAlign: TextAlign.justify),
               Text("Urgencia Interior: "),
               Text(arguments.numUrgenciaInterior()),
-              Text(arguments.urgenciasInt())
+              Text(arguments.urgenciasInt()),
+              Text("Tonica Fundamental "),
+              Text(arguments.tonicaFun()),
+              Text("Tonica del Dia"),
+              Text(arguments.tonicaDia())
             ],
           ),
         ));
@@ -49,7 +53,13 @@ class SecondPageArguments {
     var lengtName = name.length;
     var lengtlastName = lastName.length;
     var suma = lengtName + lengtlastName;
-    return suma.toString();
+    if (suma.toString().length == 2) {
+      suma = int.parse(suma.toString().substring(0, 1)) +
+          int.parse(suma.toString().substring(1));
+      return suma.toString();
+    } else {
+      return suma.toString();
+    }
   }
 
   numUrgenciaInterior() {
@@ -115,5 +125,35 @@ class SecondPageArguments {
 
   urgenciasInt() {
     return urgInt[int.parse(numUrgenciaInterior())];
+  }
+
+  numTonicaFun() {
+    var sumaFun = int.parse(sumaLengts()) + int.parse(numUrgenciaInterior());
+    if (sumaFun.toString().length == 2) {
+      sumaFun = int.parse(sumaFun.toString().substring(0, 1)) +
+          int.parse(sumaFun.toString().substring(1));
+      return sumaFun;
+    } else {
+      return sumaFun;
+    }
+  }
+
+  tonicaFun() {
+    return numTonicaFun().toString();
+  }
+
+  numTonicaDia() {
+    var sumTonicaDia = int.parse(numUrgenciaInterior()) + numTonicaFun();
+    if (sumTonicaDia.toString().length == 2) {
+      sumTonicaDia = int.parse(sumTonicaDia.toString().substring(0, 1)) +
+          int.parse(sumTonicaDia.toString().substring(1));
+      return sumTonicaDia;
+    } else {
+      return sumTonicaDia;
+    }
+  }
+
+  tonicaDia() {
+    return numTonicaDia().toString();
   }
 }
