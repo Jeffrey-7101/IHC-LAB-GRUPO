@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+class InicioTa extends StatefulWidget {
+  @override
+  _InicioTaState createState() => _InicioTaState();
+}
+
+class _InicioTaState extends State<InicioTa> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
+}
 class InicioTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

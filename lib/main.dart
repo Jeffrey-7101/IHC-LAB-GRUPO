@@ -4,56 +4,60 @@ import 'package:pruebas_en_flutter/tabs/ayuda_tabs.dart';
 import 'package:pruebas_en_flutter/tabs/inicio_tabs.dart';
 import 'package:pruebas_en_flutter/tabs/registro_tabs.dart';
 import 'package:flutter/foundation.dart';
+import 'package:pruebas_en_flutter/tabs/screen.dart';
 
 void main() {
-  var movieTitle = "hola";
   runApp(MyApp());
-  print('$movieTitle');
 }
 
 class MyApp extends StatelessWidget {
   Widget build(context) {
     return MaterialApp(
-      home: Scaffold(
-        body: MyStatefulWidget(),
+       localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+      supportedLocales: [const Locale('en'), const Locale('es')],
+       theme: new ThemeData(
+        primarySwatch: Colors.blue,
       ),
+            initialRoute: '/',
+
+      routes: {
+        '/': (BuildContext context) => MyStatefulWidget(title: "Estudio Numerologico"),
+        '/second': (BuildContext context) => InformationPage(),
+      },
     );
   }
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key key}) : super(key: key);
+  MyStatefulWidget({Key key, this.title}) : super(key: key);
+  final String title;
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      localizationsDelegates: [GlobalMaterialLocalizations.delegate],
-      supportedLocales: [const Locale('en'), const Locale('es')],
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: DefaultTabController(
+    return Scaffold(
+     
+      body: DefaultTabController(
           length: 3,
           child: Scaffold(
             appBar: AppBar(
               centerTitle: true,
-              title: const Text("Estudio Numerologico"),
+              title: Text(widget.title),
               bottom: new TabBar(
                 indicatorColor: Colors.white,
                 tabs: <Widget>[
-                  new Tab(icon: new Icon(Icons.home), text: "Inicio"),
-                  new Tab(icon: new Icon(Icons.contacts), text: "Ingresar"),
-                  new Tab(icon: new Icon(Icons.help), text: "Ayuda")
+                   Tab(icon: new Icon(Icons.home), text: "Inicio"),
+                   Tab(icon: new Icon(Icons.contacts), text: "Ingresar"),
+                   Tab(icon: new Icon(Icons.help), text: "Ayuda")
                 ],
               ),
             ),
             body: new TabBarView(
               children: <Widget>[
-                new InicioTabs(),
-                new RegistroTabs(),
-                new AyudaTabs(),
+                InicioTabs(),
+                RegistroTabs(),
+                AyudaTabs(),
               ],
             ),
           )),
