@@ -1,0 +1,17 @@
+ child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(arguments.name + " " + arguments.lastname),
+            Text("Fecha de Nacimiento: " + arguments.fechaString()),
+            Text("Números que nos rigen durante la vida:"),
+            Text(arguments.uI()),
+            Text(arguments.tF()),
+            Text(arguments.cabala()),
+            Text("Regencia del Dia de hoy:"),
+            Text(arguments.tonicaDia()),
+            Text(arguments.astrologia())
+          ],
+        )
+
+         'Tus resultados',
+                  style: TextStyle(fontFamily: 'Montserrat',fontSize: 20.0),

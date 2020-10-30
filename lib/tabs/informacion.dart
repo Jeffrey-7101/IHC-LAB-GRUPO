@@ -74,12 +74,8 @@ class Informacion {
 
   uI() {
     String pre =
-        "La urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la";
-    return "Urgencia interior: " +
-        urgencia().toString() +
-        "\n" +
-        pre +
-        urgInt[urgencia()];
+        "\nLa urgencia interior, es cómo tendemos a ser, como un signo zodiacal, pero numérico. Este número hace a la";
+    return pre +urgInt[urgencia()];
   }
 
   urgencia() {
@@ -95,10 +91,8 @@ class Informacion {
 
   tF() {
     String pre =
-        "La tónica fundamental, es en lo que tenemos que trabajar para triunfar en la vida. Este número indica que la persona tiene que";
-    return "Tonica Fundamental: " +
-        tonica().toString() +
-        "\n" +
+        "\nLa tónica fundamental, es en lo que tenemos que trabajar para triunfar en la vida. Este número indica que la persona tiene que";
+    return 
         pre +
         tonInt[tonica()];
   }
@@ -120,7 +114,7 @@ class Informacion {
     int m = month(now.toString());
     int y = year(now.toString());
     int td = num(num(num(d) + num(m) + num(y)) + (tonica()));
-    return "Tonica del dia:\nTu número para hoy " +
+    return "\nTu número para hoy " +
         y.toString() +
         "-" +
         m.toString() +
@@ -133,12 +127,12 @@ class Informacion {
   }
 
   astrologia() {
-    return "Astrología Hermética:\n" + astHer[diaActual()];
+    return "\n"+astHer[diaActual()];
   }
 
   cabala() {
     String cabala =
-        "Cábala del Año: \nDurante la vida tenemos años espaciales relacionados con la ley de causa y efecto (Karma), dependerá de uno si el número nos favorezca o esté en contra de uno, por sus acto.\n";
+        "\nDurante la vida tenemos años espaciales relacionados con la ley de causa y efecto (Karma), dependerá de uno si el número nos favorezca o esté en contra de uno, por sus acto.\n";
     int a = year(date), contador = 0;
     while (contador < 5) {
       int suma = a ~/ 1000 + ((a ~/ 100) % 10) + ((a ~/ 10) % 10) + a % 10;

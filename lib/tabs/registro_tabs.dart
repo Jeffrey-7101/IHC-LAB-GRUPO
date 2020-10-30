@@ -38,9 +38,9 @@ class _RegistroTabsState extends State<RegistroTabs> {
                   nameValue = value;
                 },
                 validator: (value) {
-                  if (value.isEmpty) {
+                  if (value.isEmpty ) {
                     return "Llene este campo";
-                  } else {
+                  }else {
                     return null;
                   }
                 },
