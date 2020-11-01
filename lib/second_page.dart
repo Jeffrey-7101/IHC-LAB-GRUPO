@@ -35,6 +35,8 @@ class InformationPage extends StatelessWidget {
               Text(arguments.numCabalaYear(3)),
               Text(arguments.numCabalaYear(4)),
               Text(arguments.numCabalaYear(5)),
+              Text(arguments.numCabalaYear(6)),
+              Text(arguments.numCabalaYear(7)),
             ],
           ),
         ));
